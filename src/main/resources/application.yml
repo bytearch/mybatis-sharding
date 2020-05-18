@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: bytearch-mysql-sharding
+  bytearch:
+    ## 默认 不分库数据源 支撑读写分离
+    normal:
+      datasources:
+        - name: ba_test
+          master:
+            jdbcUrl: jdbc:mysql://127.0.0.1:3306/ba_test
+            username: root
+            password: root
+            # >= 6.x: com.mysql.cj.jdbc.Driver
+            # <= 5.x: com.mysql.jdbc.Driver
+            driver-class-name: com.mysql.cj.jdbc.Driver
+          slaves:
+            - jdbcUrl: jdbc:mysql://127.0.0.1:3306/ba_test
+              username: root
+              password: root
+              # >= 6.x: com.mysql.cj.jdbc.Driver
+              # <= 5.x: com.mysql.jdbc.Driver
+              driver-class-name: com.mysql.cj.jdbc.Driver
+
+    ## 动态 分库数据源  支持读写分离
+    sharding:
+      datasources:
+        - name: node1
+          master:
+            jdbcUrl: jdbc:mysql://127.0.0.1:3306
+            username: root
+            password: root
+            # >= 6.x: com.mysql.cj.jdbc.Driver
+            # <= 5.x: com.mysql.jdbc.Driver
+            driver-class-name: com.mysql.cj.jdbc.Driver
+          slaves:
+            - jdbcUrl: jdbc:mysql://127.0.0.1:3306
+              username: root
+              password: root
+              # >= 6.x: com.mysql.cj.jdbc.Driver
+              # <= 5.x: com.mysql.jdbc.Driver
+              driver-class-name: com.mysql.cj.jdbc.Driver
+        - name: node2
+          master:
+            jdbcUrl: jdbc:mysql://127.0.0.1:3306
+            username: root
+            password: root
+            # >= 6.x: com.mysql.cj.jdbc.Driver
+            # <= 5.x: com.mysql.jdbc.Driver
+            driver-class-name: com.mysql.cj.jdbc.Driver
+          slaves:
+            - jdbcUrl: jdbc:mysql://127.0.0.1:3306
+              username: root
+              password: root
+              # >= 6.x: com.mysql.cj.jdbc.Driver
+              # <= 5.x: com.mysql.jdbc.Driver
+              driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 1024
+logging:
+  level:
+    com.bytearch.mysql.sharding: debug
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  #mapper-locations: classpath:com.bytearch.mybatis.sharing.dao/*.xml
