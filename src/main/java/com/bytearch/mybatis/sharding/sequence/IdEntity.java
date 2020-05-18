@@ -1,32 +1,16 @@
 package com.bytearch.mybatis.sharding.sequence;
 
+import lombok.Data;
+
 /**
  * @author yarw
  */
+@Data
 public class IdEntity {
     private long createTime;
     private long workerId;
     private long extraId;
     private long sequenceId;
-    
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
-    }
-
-
-    public void setWorkerId(long workerId) {
-        this.workerId = workerId;
-    }
-
-
-    public void setExtraId(long extraId) {
-        this.extraId = extraId;
-    }
-
-
-    public void setSequenceId(long sequenceId) {
-        this.sequenceId = sequenceId;
-    }
 
     @Override
     public String toString() {

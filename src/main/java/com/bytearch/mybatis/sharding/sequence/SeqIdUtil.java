@@ -143,7 +143,7 @@ public final class SeqIdUtil {
 
 
     public static void main(String[] args) {
-        long id = nextId(125);
+        long id = nextId(1);
         System.out.println("生成的id为:" + id);
         IdEntity idEntity = decodeId(id);
         System.out.println("解析id为:" + idEntity);

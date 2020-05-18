@@ -46,7 +46,6 @@ public class ShardingInterceptor implements Interceptor {
             // 读请求: 默认使用从库
             // 写请求(INSERT,UPDATE,DELETE): 使用主库
             boolean useMaster = !SqlCommandType.SELECT.equals(ms.getSqlCommandType());
-            boolean hasChangeDatasource = false;
             DB DB = null;
             String methodId = ms.getId();
             String className = methodId.substring(0, methodId.lastIndexOf('.'));
@@ -99,7 +98,7 @@ public class ShardingInterceptor implements Interceptor {
                     }
                 }
                 if (partitionKey != null) {
-                    log.info("[获取到partitionKey:{}]", partitionKey);
+                    log.info("获取到shardingKey:{}]", partitionKey);
                     //权重 分库 < 分表 < 分库分表(原则上同一Mapper策略只配置一种,如果配置多种依次覆盖)
                     //分库
                     IDatabaseShardingStrategy databaseShardingStrategy = ShardingStrategyUtils.getDatabaseShardingStrategy(DB);
@@ -136,8 +135,9 @@ public class ShardingInterceptor implements Interceptor {
                 if (sqlNeedChanged) {
                     BoundSql boundSql = ms.getBoundSql(pa);
                     String originSql = boundSql.getSql();
+                    log.info("[原始SQL] sql:{}", originSql);
                     String sql = originSql.replaceAll(DB.tableName(), schema + '.' + tableName);
-                    log.info("[更改SQL] sql:{}", sql);
+                    log.info("[更改后SQL] sql:{}", sql);
                     BoundSql boundSqlNew = new BoundSql(ms.getConfiguration(), sql, boundSql.getParameterMappings(), boundSql.getParameterObject());
                     MappedStatement mappedStatement = copyFromMappedStatement(ms, new BoundSqlSqlSource(boundSqlNew));
                     args[0] = mappedStatement;
