@@ -14,3 +14,7 @@
   请关注“浅谈架构” 公众号查看
   
   ![bytearch](http://storage.bytearch.com/images/qrcode_demo_bytearch.jpg)
+  
+  or 技术博客
+  
+  [《浅谈mysql分库分表那些事儿》](http://bytearch.com/details/16)
