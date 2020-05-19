@@ -12,3 +12,4 @@
   
   ### 设计思路
   请关注“浅谈架构” 公众号查看
+  ![bytearch](http://storage.bytearch.com/images/qrcode_demo_bytearch.jpg)
