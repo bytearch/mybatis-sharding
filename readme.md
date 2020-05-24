@@ -17,4 +17,4 @@
   
   or 技术博客
   
-  [《浅谈mysql分库分表那些事儿》](http://bytearch.com/details/16)
+  [《浅谈mysql分库分表那些事儿》](http://blog.bytearch.com/2020/05/17/mysql-shard/)
